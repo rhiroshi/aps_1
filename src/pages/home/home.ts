@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SQLStorage } from '../../providers/sql-storage';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-
+	constructor(public db: SQLStorage, public navCtrl: NavController) {
+		this.navCtrl.push('CadastroUsuario');
   }
 
 }

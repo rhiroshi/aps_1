@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SQLStorage } from '../../providers/sql-storage';
 
 /**
  * Generated class for the CadastroUsuario page.
@@ -14,7 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CadastroUsuario {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	public nome = '';
+	public usuario = '';
+	public senha = '';
+
+  constructor(public db: SQLStorage, public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  cadastrar() {
+
   }
 
   ionViewDidLoad() {

@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\pages",
+    "\\src\\pages\\cadastro-usuario",
+    "\\src\\pages\\home",
+    "\\src\\providers"
+  ],
+  "SelectedNode": "\\src\\providers\\sql-storage.ts",
+  "PreviewInSolutionExplorer": false
+}

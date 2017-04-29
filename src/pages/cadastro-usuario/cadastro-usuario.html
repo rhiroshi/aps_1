@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the CadastroUsuario page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -7,12 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cadastro_usuario</ion-title>
+    <ion-title>Cadastro de Usuário</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item>
+    <ion-label floating>Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="nome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Usuário</ion-label>
+    <ion-input type="text" [(ngModel)]="usuario"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Senha</ion-label>
+    <ion-input type="password" [(ngModel)]="senha"></ion-input>
+  </ion-item>
+
+  <button ion-button block>Cadastrar</button>
+
 
 </ion-content>
