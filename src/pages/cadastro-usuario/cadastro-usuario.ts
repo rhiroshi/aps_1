@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ToastController , IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 
 /**
@@ -19,11 +19,27 @@ export class CadastroUsuario {
 	public usuario = '';
 	public senha = '';
 
-  constructor(public db: SQLStorage, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public toast: ToastController, public db: SQLStorage, public navCtrl: NavController, public navParams: NavParams) {
+        
   }
 
   cadastrar() {
+	  if (!this.nome || !this.usuario || !this.senha) {
+		  this.toast.create({
+			  message: 'Todos os campos devem estar preenchdos!',
+			  duration: 2000,
+			  position: 'top'
+		  });
+	  } else {
+		  this.db.query('INSERT INTO login VALUES(?,?,?)', [this.nome, this.usuario, this.senha]).then(result => {
+			  this.toast.create({
+				  message: 'Usuario cadastrado com sucesso!',
+				  duration: 1500,
+				  position: 'top'
+			  });
 
+		  });
+	  }
   }
 
   ionViewDidLoad() {

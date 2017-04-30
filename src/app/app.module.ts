@@ -3,9 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { SQLStorage } from '../providers/sql-storage';
-
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { AuthService } from '../providers/auth-service';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
@@ -25,7 +25,8 @@ import { HomePage } from '../pages/home/home';
   ],
   providers: [
 	  SQLStorage,
-        SQLite,
+	  SQLite,
+	  AuthService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

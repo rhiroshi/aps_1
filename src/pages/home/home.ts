@@ -9,7 +9,7 @@ import { SQLStorage } from '../../providers/sql-storage';
 export class HomePage {
 
 	constructor(public db: SQLStorage, public navCtrl: NavController) {
-		this.navCtrl.push('CadastroUsuario');
+		this.navCtrl.push('Login');
   }
 
 }

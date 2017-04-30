@@ -6,8 +6,10 @@
     "\\src\\pages",
     "\\src\\pages\\cadastro-usuario",
     "\\src\\pages\\home",
-    "\\src\\providers"
+    "\\src\\pages\\login",
+    "\\src\\providers",
+    "\\src\\theme"
   ],
-  "SelectedNode": "\\src\\providers\\sql-storage.ts",
+  "SelectedNode": "\\src\\pages\\login\\login.html",
   "PreviewInSolutionExplorer": false
 }
