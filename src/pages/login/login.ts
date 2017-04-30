@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the Login page.
  *
@@ -15,18 +16,27 @@ import { AuthService } from '../../providers/auth-service';
 export class Login {
       
 	public login = { usuario: '', senha: '' };
-  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public toast: ToastController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   logar() {
 	  
 	  this.auth.login(this.login).then(res => {
-		  console.log('logar : ', res);
+		  if (res) {
+			  this.navCtrl.setRoot(HomePage);
+		  } else {
+			  let toast = this.toast.create({
+				  message: 'Login e/ou senha inválidos',
+				  duration: 1500,
+				  position: 'top'
+			  });
+			  toast.present();
+		  }
 	  });
   }
 
   registrar() {
-
+	  this.navCtrl.push('CadastroUsuario');
   }
 
   ionViewDidLoad() {
