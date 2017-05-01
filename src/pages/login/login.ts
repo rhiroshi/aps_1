@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { HomePage } from '../home/home';
 /**
  * Generated class for the Login page.
  *
@@ -23,7 +22,7 @@ export class Login {
 	  
 	  this.auth.login(this.login).then(res => {
 		  if (res) {
-			  this.navCtrl.setRoot(HomePage);
+			  this.navCtrl.setRoot('Disciplinas');
 		  } else {
 			  let toast = this.toast.create({
 				  message: 'Login e/ou senha inválidos',
@@ -40,7 +39,6 @@ export class Login {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
   }
 
 }

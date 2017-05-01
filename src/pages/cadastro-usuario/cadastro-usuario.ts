@@ -2,7 +2,6 @@
 import { ToastController , IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 import { AuthService } from '../../providers/auth-service';
-import { HomePage } from '../home/home';
 /**
  * Generated class for the CadastroUsuario page.
  *
@@ -41,7 +40,7 @@ export class CadastroUsuario {
 			  });
 			  toaster.present();
 			  this.auth.login({ usuario: this.usuario, senha: this.senha }).then((res) => {
-				  this.navCtrl.push(HomePage);
+				  this.navCtrl.push('Disciplinas');
 			  });
 		  });
 	  }

@@ -2,7 +2,6 @@
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
 import { SQLStorage } from '../providers/sql-storage';
 import { AuthService } from '../providers/auth-service';
 @Component({
@@ -15,7 +14,7 @@ export class MyApp {
 		if (auth.getLoginInfo() == null || auth.getLoginInfo() == undefined) {
 			this.rootPage = 'Login';
 		} else {
-			this.rootPage = HomePage;
+			this.rootPage = 'Disciplinas';
 		}
 
     platform.ready().then(() => {
@@ -25,7 +24,10 @@ export class MyApp {
 	    db.create('aps_1');
 	    db.query(`CREATE TABLE IF NOT EXISTS login(usuario TEXT PRIMARY KEY, senha TEXT, nome TEXT)`);
 	    db.query(`CREATE TABLE IF NOT EXISTS disciplina(id INTEGER PRIMARY KEY AUTOINCREMENT, 
-                                                                                              titulo TEXT)`);
+                                                                                              nome TEXT,
+                                                                                              codigo TEXT,
+                                                                                              usuario TEXT,
+                                                                                              FOREIGN KEY(usuario) REFERENCES login(usuario))`);
 	    db.query(`CREATE TABLE IF NOT EXISTS atividade(id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                                                               titulo TEXT, 
                                                                                               data_entrega TEXT,

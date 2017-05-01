@@ -24,7 +24,6 @@ export class AuthService {
 	constructor(public db: SQLStorage){}
 
 	public login(credenciais) {
-		let flag = true;
 
 		return new Promise((resolve) => {
 			this.db.query(`SELECT count(usuario) as qtd, nome, usuario FROM Login WHERE usuario = ? AND senha = ?`, [credenciais.usuario, credenciais.senha]).then(resultado => {
