@@ -4,12 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\pages",
-    "\\src\\pages\\cadastro-usuario",
+    "\\src\\pages\\disciplina",
+    "\\src\\pages\\disciplinas",
     "\\src\\pages\\home",
     "\\src\\pages\\login",
     "\\src\\providers",
     "\\src\\theme"
   ],
-  "SelectedNode": "\\src\\pages\\login\\login.html",
+  "SelectedNode": "\\src\\pages\\disciplina\\disciplina.ts",
   "PreviewInSolutionExplorer": false
 }
