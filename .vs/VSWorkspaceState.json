@@ -4,12 +4,12 @@
     "\\src",
     "\\src\\app",
     "\\src\\pages",
+    "\\src\\pages\\cadastro-disciplina",
+    "\\src\\pages\\cadastro-documento",
     "\\src\\pages\\disciplina",
     "\\src\\pages\\disciplinas",
     "\\src\\pages\\home",
-    "\\src\\pages\\login",
-    "\\src\\providers",
-    "\\src\\theme"
+    "\\src\\pages\\login"
   ],
   "SelectedNode": "\\src\\pages\\disciplina\\disciplina.ts",
   "PreviewInSolutionExplorer": false

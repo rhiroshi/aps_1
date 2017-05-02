@@ -29,7 +29,7 @@ export class MyApp {
                                                                                               usuario TEXT,
                                                                                               FOREIGN KEY(usuario) REFERENCES login(usuario))`);
 	    db.query(`CREATE TABLE IF NOT EXISTS atividade(id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                                                                              titulo TEXT, 
+                                                                                              nome TEXT, 
                                                                                               data_entrega TEXT,
                                                                                               entregue INTEGER,
                                                                                               disciplina INTEGER,

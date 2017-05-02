@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   Generated template for the Disciplina page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
@@ -6,9 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>disciplina</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button (click)="voltar()">
+      <ion-icon name="arrow-back"></ion-icon>
+      Voltar</button>
+    </ion-buttons>
+    <ion-title>{{disciplina.nome}}</ion-title>
+  </ion-toolbar>
 
 </ion-header>
 

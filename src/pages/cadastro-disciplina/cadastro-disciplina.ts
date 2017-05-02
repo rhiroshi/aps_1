@@ -37,6 +37,7 @@ export class CadastroDisciplina {
 				});
 				toast.present();
 			});
+			this.fechar();
 		}
 	}
 

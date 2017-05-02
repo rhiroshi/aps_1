@@ -21,10 +21,10 @@
 <ion-content padding>
 
     <ion-list>
-      <button ion-item *ngFor="let disciplina of disciplinas" (click)="abreDisciplina(disciplina.id)">
+      <button ion-item *ngFor="let disciplina of disciplinas" (click)="abreDisciplina(disciplina)">
         {{disciplina.nome}}
         <ion-note item-right>{{disciplina.codigo}}</ion-note>
-        <ion-icon item-right name="arrow-forward"></ion-icon>
+        <!-- <ion-icon item-right name="arrow-forward"></ion-icon>  NO IOS JA TEM UMA FLECHA MAS NO ANDROID NAO TEM    -->
       </button>
     </ion-list>
 

@@ -1,0 +1,63 @@
+﻿<!--
+  Generated template for the CadastroDocumento page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title *ngIf="documento.id == null">Cadastro de documento</ion-title>
+    <ion-title *ngIf="documento.id != null">Alterar Documento</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+		id: null,
+		nome: '',
+		dataEntrega: '',
+		responsavel: '',
+		local: '',
+		entregue: null,
+            disciplina: ''
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label floating>Nome</ion-label>
+    <ion-input type="text" [(ngModel)]="documento.nome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data de Entrega</ion-label>
+    <ion-datetime [(ngModel)]="documento.dataEntrega"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Responsável</ion-label>
+    <ion-input type="text" [(ngModel)]="documento.responsavel"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Local</ion-label>
+    <ion-input type="text" [(ngModel)]="documento.local"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Entregue</ion-label>
+    <ion-toggle checked="false" [(ngModel)]="documento.entregue"></ion-toggle>
+  </ion-item>
+
+  <ion-item *ngIf="documento.id != null">
+    <ion-label floating>Disciplina</ion-label>
+    <ion-input disabled="true" type="text" [(ngModel)]="disciplina.nome"></ion-input>
+  </ion-item>
+
+  <button ion-button block (click)="salvar()">Salvar</button>
+  <button ion-button color="danger" block (click)="excluir()" *ngIf="documento.id != null">Excluir</button>
+
+</ion-content>
