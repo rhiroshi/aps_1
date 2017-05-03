@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SQLStorage } from '../../providers/sql-storage';
 /**
@@ -30,7 +30,7 @@ export class CadastroAtividade {
 	};
 	public usuarioLogado = this.auth.getLoginInfo();
 
-	constructor(public toast: ToastController, public db: SQLStorage, public view: ViewController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public alert: AlertController, public toast: ToastController, public db: SQLStorage, public view: ViewController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.navCtrl.setRoot('Login');
 		} else {
@@ -55,7 +55,14 @@ export class CadastroAtividade {
 	}
 
 	salvar() {
-		if (this.atividade.id == null) {
+		if (this.atividade.nome == '' || this.atividade.dataEntrega == '') {
+			let toast = this.toast.create({
+				message: 'Todos os campos devem estar preenchidos',
+				duration: 1500,
+                        position: 'top'
+			});
+			toast.present();
+		}else if (this.atividade.id == null) {
 			this.db.query(`INSERT INTO atividade(nome, data_entrega, entregue, disciplina) VALUES(?, ?, ?, ?)`, [this.atividade.nome, this.atividade.dataEntrega, this.atividade.entregue, this.disciplina.id]).then(res => {
 				let toast = this.toast.create({
 					message: 'Atividade Criada com sucesso',
@@ -79,15 +86,28 @@ export class CadastroAtividade {
 	}
 
 	excluir() {
-		this.db.query('DELETE FROM atividade WHERE id = ?', [this.atividade.id]).then(res => {
-			let toast = this.toast.create({
-				message: 'Atividade excluida com sucesso',
-				duration: 1500,
-                        position: 'top'
-			});
-			toast.present();
-			this.fechar();
+		let alert = this.alert.create({
+			title: 'Confirmação',
+			message: 'Deseja mesmo excluir essa atividade?',
+			buttons: [{
+				text: 'Sim',
+				handler: () => {
+					this.db.query('DELETE FROM atividade WHERE id = ?', [this.atividade.id]).then(res => {
+						let toast = this.toast.create({
+							message: 'Atividade excluida com sucesso',
+							duration: 1500,
+							position: 'top'
+						});
+						toast.present();
+						this.fechar();
+					});
+				}
+			}, {
+				text: 'Não',
+				role: 'cancel'
+			}]
 		});
+		alert.present();
 	}
 
   ionViewDidLoad() {

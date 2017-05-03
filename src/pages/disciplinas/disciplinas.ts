@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 import { AuthService } from '../../providers/auth-service';
 /**
@@ -17,7 +17,7 @@ export class Disciplinas {
 
 	public disciplinas = [];
 	public usuarioAtual = this.auth.getLoginInfo();
-	constructor(public auth: AuthService, public db: SQLStorage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public app: App, public auth: AuthService, public db: SQLStorage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.navCtrl.setRoot('Login');
 		} else {
@@ -26,7 +26,7 @@ export class Disciplinas {
   }
 
   novaDisciplina() {
-	  let modal = this.modal.create('CadastroDisciplina');
+	  let modal = this.modal.create('CadastroDisciplina', { disciplina: null });
 	  modal.onDidDismiss(res => {
 		  this.atualizarLista();
 	  });
@@ -34,7 +34,9 @@ export class Disciplinas {
   }
 
   abreDisciplina(disciplina) {
-	  this.navCtrl.push('TabsDisciplina', { disciplina: disciplina });
+	  this.app.getRootNav().popToRoot().then(() => {
+		  this.app.getRootNav().setRoot('TabsDisciplina', { disciplina: disciplina });
+	  });
   }
 
   atualizarLista() {

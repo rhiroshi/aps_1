@@ -22,18 +22,21 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
           
 	    db.create('aps_1');
+	   // db.query('PRAGMA foreign_key=ON');
 	    db.query(`CREATE TABLE IF NOT EXISTS login(usuario TEXT PRIMARY KEY, senha TEXT, nome TEXT)`);
 	    db.query(`CREATE TABLE IF NOT EXISTS disciplina(id INTEGER PRIMARY KEY AUTOINCREMENT, 
                                                                                               nome TEXT,
                                                                                               codigo TEXT,
                                                                                               usuario TEXT,
-                                                                                              FOREIGN KEY(usuario) REFERENCES login(usuario))`);
+                                                                                              FOREIGN KEY(usuario) REFERENCES login(usuario)
+                                                                                              ON DELETE CASCADE)`);
 	    db.query(`CREATE TABLE IF NOT EXISTS atividade(id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                                                               nome TEXT, 
                                                                                               data_entrega TEXT,
                                                                                               entregue INTEGER,
                                                                                               disciplina INTEGER,
-                                                                                              FOREIGN KEY(disciplina) REFERENCES disciplina(id))`);
+                                                                                              FOREIGN KEY(disciplina) REFERENCES disciplina(id)
+                                                                                              ON DELETE CASCADE)`);
 	    db.query(`CREATE TABLE IF NOT EXISTS documento(id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                                                                 nome TEXT, 
                                                                                                 data_entrega TEXT,
@@ -41,7 +44,8 @@ export class MyApp {
                                                                                                 local TEXT,
                                                                                                 entregue INTEGER,
                                                                                                 disciplina INTEGER,
-                                                                                                FOREIGN KEY(disciplina) REFERENCES disciplina(id))`);
+                                                                                                FOREIGN KEY(disciplina) REFERENCES disciplina(id)
+                                                                                              ON DELETE CASCADE)`);
           
       statusBar.styleDefault();
       splashScreen.hide();

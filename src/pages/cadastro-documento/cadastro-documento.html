@@ -10,8 +10,8 @@
     <ion-title *ngIf="documento.id == null">Cadastro de documento</ion-title>
     <ion-title *ngIf="documento.id != null">Alterar Documento</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon name="exit"></ion-icon>
+      <button ion-button icon-only (click)="fechar()">
+        <ion-icon name="close" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SQLStorage } from '../../providers/sql-storage';
 /**
@@ -31,7 +31,7 @@ export class CadastroDocumento {
 	};
 
 
-	constructor(public view: ViewController, public toast: ToastController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public alert: AlertController, public view: ViewController, public toast: ToastController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.navCtrl.setRoot('Login');
 		} else {
@@ -47,7 +47,14 @@ export class CadastroDocumento {
   }
 
 	salvar() {
-		if (this.documento.id == null) {
+		if (this.documento.nome == '' || this.documento.dataEntrega == '' || this.documento.responsavel == '' || this.documento.local == '') {
+			let toast = this.toast.create({
+				message: 'Todos os campos devem estar preenchidos',
+				duration: 1500,
+                        position: 'top'
+			});
+			toast.present();
+		}else if (this.documento.id == null) {
 			this.db.query('INSERT INTO documento(nome, data_entrega, responsavel, local, entregue, disciplina) VALUES (?, ?, ?, ?, ?, ?)', [this.documento.nome, this.documento.dataEntrega, this.documento.responsavel, this.documento.local, this.documento.entregue, this.disciplina.id]).then(res => {
 				let toast = this.toast.create({
 					message: 'Documento inserido com sucesso',
@@ -71,15 +78,28 @@ export class CadastroDocumento {
 	}
 
 	excluir() {
-		this.db.query('DELETE FROM documento WHERE id = ? ', [this.documento.id]).then(res => {
-			let toast = this.toast.create({
-				message: 'Documento excluido com sucesso',
-				duration: 1500,
-                        position: 'top'
-			});
-			toast.present();
-			this.view.dismiss();
+		let alert = this.alert.create({
+			title: 'Confirmação',
+			message: 'Deseja mesmo excluir esse documento? ',
+			buttons: [{
+				text: 'Sim',
+				handler: () => {
+					this.db.query('DELETE FROM documento WHERE id = ? ', [this.documento.id]).then(res => {
+						let toast = this.toast.create({
+							message: 'Documento excluido com sucesso',
+							duration: 1500,
+							position: 'top'
+						});
+						toast.present();
+						this.view.dismiss();
+					});
+				}
+			}, {
+				text: 'Não',
+				role: 'cancel'
+			}]
 		});
+		alert.present();
 	}
 
 	fechar() {

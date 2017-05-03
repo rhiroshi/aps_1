@@ -23,11 +23,15 @@
   <ion-list>
     <ion-item *ngFor="let atividade of atividades">
       <h2>{{atividade.nome}}</h2>
-      <p>{{atividade.dataEntrega}}</p>
+      <p>Data de entrega: {{atividade.dataEntrega}}</p>
+      <ion-note color="success" *ngIf="atividade.entregue == 'true'">Entregue</ion-note>
+      <ion-note color="danger" *ngIf="atividade.entregue == 'false'">Não entregue</ion-note>
       <button color="dark" ion-button icon-only item-right (click)="editaAtividade(atividade)">
         <ion-icon name="create"></ion-icon>
       </button>
-      <ion-note item-right>S/N</ion-note>
+      <button color="dark" ion-button icon-only item-right (click)="entregar(atividade)" *ngIf="atividade.entregue == 'false'">
+        <ion-icon name="checkmark" color="success"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 

@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Cadastro de Disciplina</ion-title>
+    <ion-title *ngIf="disciplina.id == null">Cadastro de Disciplina</ion-title>
+    <ion-title *ngIf="disciplina.id != null">Editar Disciplina</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,5 +24,6 @@
     <ion-input type="text" [(ngModel)]="disciplina.codigo"></ion-input>
   </ion-item>
 
-  <button ion-button block (click)="cadastrar()">Cadastrar</button>
+  <button ion-button block (click)="salvar()" *ngIf="disciplina.id == null">Cadastrar</button>
+  <button ion-button block (click)="salvar()" *ngIf="disciplina.id != null">Salvar</button>
 </ion-content>

@@ -19,5 +19,30 @@
 
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+    <h2>{{disciplina.nome}}</h2></ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header>Progresso</ion-list-header>
 
+        <ion-item>
+          <ion-label>Documentos</ion-label>
+          <ion-input disabled type="text" [(ngModel)]="progDocumentos"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Atividades</ion-label>
+          <ion-input disabled type="text" [(ngModel)]="progAtividades"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total</ion-label>
+          <ion-input disabled type="text" [(ngModel)]="progTotal"></ion-input>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-card-content>
+    </ion-card>
+      <button ion-button block (click)="editar()">Editar</button>
+      <button ion-button block color="danger" (click)="excluir()">Excluir</button>
 </ion-content>

@@ -30,6 +30,9 @@ export class TabsDisciplina {
 		}
   }
 
+	atualizaProgresso() {
+	}
+
   ionViewDidLoad() {
   }
 

@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SQLStorage } from '../../providers/sql-storage';
 /**
@@ -22,7 +22,7 @@ export class Atividades {
             usuario: null
 	}
 
-	constructor(public db: SQLStorage, public modal: ModalController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public alert: AlertController, public toast: ToastController, public db: SQLStorage, public modal: ModalController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.navCtrl.setRoot('Login');
 		} else {
@@ -57,6 +57,32 @@ export class Atividades {
 				this.atividades.push(ati);
 			}
 		});
+	}
+
+	entregar(atividade) {
+		let alert = this.alert.create({
+			title: 'Entregar',
+			message: 'Deseja mesmo entregar essa atividade?',
+			buttons: [{
+				text: 'Sim',
+				handler: () => {
+					this.db.query('UPDATE atividade SET entregue = "true" WHERE id = ?', [atividade.id]).then(res => {
+						let toast = this.toast.create({
+							message: 'Atividade entregue com sucesso',
+							duration: 1500,
+							position: 'top'
+						});
+						toast.present();
+						this.atualizaAtividade();
+					});
+				}
+			},
+			{
+				text: 'Não',
+				role: 'cancel'
+			}]
+		});
+		alert.present();
 	}
 
   ionViewDidLoad() {

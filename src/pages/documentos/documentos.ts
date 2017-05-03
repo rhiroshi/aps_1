@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 import { AuthService } from '../../providers/auth-service';
 /**
@@ -21,7 +21,7 @@ export class Documentos {
 		nome: '',
             usuario:''
 	};
-	constructor(public toast: ToastController, public modal: ModalController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public alert: AlertController, public toast: ToastController, public modal: ModalController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.navCtrl.setRoot('Login');
 		} else {
@@ -47,15 +47,29 @@ export class Documentos {
 	}
 
 	entregar(documento) {
-		this.db.query('UPDATE documento SET entregue = "true" WHERE id = ?', [documento.id]).then(res => {
-			let toast = this.toast.create({
-				message: 'Documento entregue com sucesso',
-				duration: 1500,
-                        position: 'top'
-			});
-			toast.present();
-			this.atualizarDocumento();
+		let alert = this.alert.create({
+			title: 'Entregar',
+			message: 'Deseja mesmo entregar o documento?',
+			buttons: [{
+				text: 'Sim',
+				handler: () => {
+					this.db.query('UPDATE documento SET entregue = "true" WHERE id = ?', [documento.id]).then(res => {
+						let toast = this.toast.create({
+							message: 'Documento entregue com sucesso',
+							duration: 1500,
+							position: 'top'
+						});
+						toast.present();
+						this.atualizarDocumento();
+					});
+				}
+			},
+			{
+				text: 'Não',
+				role: 'cancel'
+			}]
 		});
+		alert.present();
 	}
 
 	atualizarDocumento() {

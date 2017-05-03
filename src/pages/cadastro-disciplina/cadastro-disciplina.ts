@@ -15,12 +15,19 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class CadastroDisciplina {
 
-	public disciplina = { nome: '', codigo: '' };
+	public disciplina = { id: null, nome: '', codigo: '' };
 	public usuarioLogado = this.auth.getLoginInfo();
 	constructor(public view: ViewController, public toast: ToastController, private auth: AuthService, public db: SQLStorage, public navCtrl: NavController, public navParams: NavParams) {
+		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
+			this.navCtrl.setRoot('Login');
+		} else {
+			if (this.navParams.get('disciplina') != null) {
+				this.disciplina = this.navParams.get('disciplina');
+			}
+		}
   }
 
-	cadastrar() {
+	salvar() {
 		if (this.disciplina.nome == '' || this.disciplina.codigo == '') {
 			let toast = this.toast.create({
 				message: 'Os campos devem estar preenchidos',
@@ -28,7 +35,17 @@ export class CadastroDisciplina {
 				position: 'top'
 			});
 			toast.present();
-		} else {
+		} else if (this.disciplina.id != null) {
+			this.db.query('UPDATE disciplina SET nome = ?, codigo = ? WHERE id = ?', [this.disciplina.nome, this.disciplina.codigo, this.disciplina.id]).then(res => {
+				let toast = this.toast.create({
+					message: 'Disciplina atualizada com sucesso',
+					duration: 1500,
+                              position: 'top'
+				});
+				toast.present();
+				this.fechar();
+			});
+		}else{
 			this.db.query('INSERT INTO disciplina(nome, codigo, usuario) VALUES(?,?,?)', [this.disciplina.nome, this.disciplina.codigo, this.usuarioLogado.usuario]).then((res) => {
 				let toast = this.toast.create({
 					message: 'Disciplina cadastrada com sucesso',

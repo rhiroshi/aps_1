@@ -22,7 +22,7 @@ export class Login {
 	  
 	  this.auth.login(this.login).then(res => {
 		  if (res) {
-			  this.navCtrl.setRoot('Disciplinas');
+			  this.navCtrl.setRoot('TabsMain');
 		  } else {
 			  let toast = this.toast.create({
 				  message: 'Login e/ou senha inválidos',
