@@ -17,7 +17,7 @@ export class TabsMain {
 	private tab1Root: any = 'Disciplinas';
 	private tab2Root: any = 'Progresso';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {

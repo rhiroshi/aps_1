@@ -28,7 +28,9 @@ export class Disciplina {
 
 	constructor(public app: App, public alert: AlertController, public toast: ToastController, public db: SQLStorage, public modal: ModalController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
-			this.navCtrl.setRoot('Login');
+			this.app.getRootNav().popToRoot().then(() => {
+				this.app.getRootNav().setRoot('Login');
+			});
 		} else {
 			this.disciplina = this.navParams.get('disciplina');
 			this.atualizaProgresso();

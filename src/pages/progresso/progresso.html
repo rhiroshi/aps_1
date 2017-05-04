@@ -15,22 +15,22 @@
 
 <ion-content padding>
 
-  <ion-card>
-    <ion-card-header>Disciplina</ion-card-header>
+  <ion-card *ngFor="let disciplina of disciplinas">
+    <ion-card-header>{{disciplina.nome}}</ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-label>Documentos</ion-label>
-        <ion-input type="text" disabled value="50%"></ion-input>
+        <ion-input type="text" disabled [(ngModel)]="disciplina.progDocumentos"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Atividades</ion-label>
-        <ion-input type="text" disabled value="40%"> </ion-input>
+        <ion-input type="text" disabled [(ngModel)]="disciplina.progAtividades"> </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Total</ion-label>
-        <ion-input type="text" disabled value="90%"></ion-input>
+        <ion-input type="text" disabled [(ngModel)]="disciplina.progTotal"></ion-input>
       </ion-item>
 
     </ion-card-content>

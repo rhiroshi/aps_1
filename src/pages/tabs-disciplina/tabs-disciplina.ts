@@ -1,6 +1,5 @@
 ﻿import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
 /**
  * Generated class for the TabsDisciplina page.
  *
@@ -14,20 +13,13 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class TabsDisciplina {
 
-	private tab1Root: any;
-	private tab2Root: any;
-	private tab3Root: any;
+	private tab1Root: any = 'Disciplina';
+	private tab2Root: any = 'Documentos';
+	private tab3Root: any = 'Atividades';
 
 	public disciplina = this.navParams.data;
 
-	constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
-		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
-			this.navCtrl.setRoot('Login');
-		} else {
-			this.tab1Root = 'Disciplina';
-			this.tab2Root = 'Documentos';
-			this.tab3Root = 'Atividades';
-		}
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 	atualizaProgresso() {

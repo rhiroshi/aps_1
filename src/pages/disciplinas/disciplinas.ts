@@ -19,7 +19,9 @@ export class Disciplinas {
 	public usuarioAtual = this.auth.getLoginInfo();
 	constructor(public app: App, public auth: AuthService, public db: SQLStorage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
-			this.navCtrl.setRoot('Login');
+			this.app.getRootNav().popToRoot().then(() => {
+				this.app.getRootNav().setRoot('Login');
+			});
 		} else {
 			this.atualizarLista();
 		}

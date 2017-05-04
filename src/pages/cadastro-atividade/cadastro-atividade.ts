@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, App } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { SQLStorage } from '../../providers/sql-storage';
 /**
@@ -30,9 +30,11 @@ export class CadastroAtividade {
 	};
 	public usuarioLogado = this.auth.getLoginInfo();
 
-	constructor(public alert: AlertController, public toast: ToastController, public db: SQLStorage, public view: ViewController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public app: App, public alert: AlertController, public toast: ToastController, public db: SQLStorage, public view: ViewController, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
-			this.navCtrl.setRoot('Login');
+			this.app.getRootNav().popToRoot().then(() => {
+				this.app.getRootNav().setRoot('Login');
+			});
 		} else {
 			if (this.navParams.get('atividade') != null) {
 				this.atividade = this.navParams.get('atividade');

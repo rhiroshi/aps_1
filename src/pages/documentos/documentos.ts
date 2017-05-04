@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, ToastController, AlertController, App } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 import { AuthService } from '../../providers/auth-service';
 /**
@@ -21,9 +21,11 @@ export class Documentos {
 		nome: '',
             usuario:''
 	};
-	constructor(public alert: AlertController, public toast: ToastController, public modal: ModalController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public app: App, public alert: AlertController, public toast: ToastController, public modal: ModalController, public db: SQLStorage, public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
-			this.navCtrl.setRoot('Login');
+			this.app.getRootNav().popToRoot().then(() => {
+				this.app.getRootNav().setRoot('Login');
+			});
 		} else {
 			this.disciplina = this.navParams.get('disciplina');
 			this.atualizarDocumento();
