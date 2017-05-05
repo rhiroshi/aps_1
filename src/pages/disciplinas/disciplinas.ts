@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, App, AlertController } from 'ionic-angular';
 import { SQLStorage } from '../../providers/sql-storage';
 import { AuthService } from '../../providers/auth-service';
 /**
@@ -17,7 +17,7 @@ export class Disciplinas {
 
 	public disciplinas = [];
 	public usuarioAtual = this.auth.getLoginInfo();
-	constructor(public app: App, public auth: AuthService, public db: SQLStorage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public alert: AlertController, public app: App, public auth: AuthService, public db: SQLStorage, public modal: ModalController, public navCtrl: NavController, public navParams: NavParams) {
 		if (this.auth.getLoginInfo() == null || this.auth.getLoginInfo() == undefined) {
 			this.app.getRootNav().popToRoot().then(() => {
 				this.app.getRootNav().setRoot('Login');
@@ -50,6 +50,25 @@ export class Disciplinas {
 			  this.disciplinas.push(disciplina);
 		  }
 	  });
+  }
+  logout() {
+	  let alert = this.alert.create({
+		  title: "Confirmação",
+		  message: 'Deseja mesmo fazer o log out?',
+		  buttons: [{
+			  text: 'Sim',
+			  handler: () => {
+				  this.auth.logout();
+				  this.app.getRootNav().popToRoot().then(() => {
+					  this.app.getRootNav().setRoot('Login');
+				  });
+			  }
+		  }, {
+			  text: 'Não',
+			  role: 'cancel'
+		  }]
+	  });
+	  alert.present();
   }
 
   ionViewDidLoad() {

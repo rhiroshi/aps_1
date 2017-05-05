@@ -26,10 +26,10 @@
       <p>Data de entrega: {{atividade.dataEntrega}}</p>
       <ion-note color="success" *ngIf="atividade.entregue == 'true'">Entregue</ion-note>
       <ion-note color="danger" *ngIf="atividade.entregue == 'false'">Não entregue</ion-note>
-      <button color="dark" ion-button icon-only item-right (click)="editaAtividade(atividade)">
-        <ion-icon name="create"></ion-icon>
+      <button outline color="dark" ion-button icon-only item-right (click)="editaAtividade(atividade)">
+        <ion-icon color="dark" name="create"></ion-icon>
       </button>
-      <button color="dark" ion-button icon-only item-right (click)="entregar(atividade)" *ngIf="atividade.entregue == 'false'">
+      <button outline color="dark" ion-button icon-only item-right (click)="entregar(atividade)" *ngIf="atividade.entregue == 'false'">
         <ion-icon name="checkmark" color="success"></ion-icon>
       </button>
     </ion-item>
