@@ -22,6 +22,23 @@
 
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+  <ion-item>
+    <ion-label >Pesquisa</ion-label>
+    <ion-input type="text" [(ngModel)]="pesquisa"></ion-input>
+  </ion-item>
+
+      </ion-col>
+      <ion-col col-2>
+  <button ion-button icon-only (click)="pesquisar(pesquisa)">
+    <ion-icon name="search"></ion-icon>
+  </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 
     <ion-list>
       <button ion-item *ngFor="let disciplina of disciplinas" (click)="abreDisciplina(disciplina)">

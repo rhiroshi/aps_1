@@ -5,12 +5,12 @@
     "\\src\\pages",
     "\\src\\pages\\atividades",
     "\\src\\pages\\cadastro-atividade",
-    "\\src\\pages\\cadastro-usuario",
-    "\\src\\pages\\disciplina",
+    "\\src\\pages\\cadastro-documento",
     "\\src\\pages\\disciplinas",
     "\\src\\pages\\documentos",
-    "\\src\\pages\\progresso"
+    "\\src\\pages\\pesquisa",
+    "\\src\\pages\\tabs-disciplina"
   ],
-  "SelectedNode": "\\src\\pages\\disciplinas\\disciplinas.ts",
+  "SelectedNode": "\\src\\pages\\disciplinas\\disciplinas.html",
   "PreviewInSolutionExplorer": false
 }

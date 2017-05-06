@@ -1,0 +1,66 @@
+﻿<!--
+  Generated template for the Pesquisa page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Resultados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-list-header> Atividades </ion-list-header>
+    <ion-card *ngFor="let ativ of atividades">
+      <ion-grid>
+      <ion-row>
+        <ion-col>
+      <p><b>Id:</b> {{ativ.id}}</p>
+      <p><b>Nome:</b> {{ativ.nome}}</p>
+      <p><b>Data de entrega:</b> {{ativ.dataEntrega}}</p>
+      <p><b>Disciplina:</b> {{ativ.disciplinaNome}}</p>
+      <ion-note color="danger" *ngIf="ativ.entregue == 'false'">Documento não entregue</ion-note>
+      <ion-note color="success" *ngIf="ativ.entregue == 'true'">Documeto entregue</ion-note>
+        </ion-col>
+        <ion-col>
+          <button ion-button (click)="editarAtividade(ativ)"> Editar</button>
+          <button color="danger" ion-button (click)="excluirAtividade(ativ)"> Excluir</button>
+          <button color="success" ion-button (click)="entregarAtividade(ativ)" *ngIf="ativ.entregue == 'false'"> Entregar</button>
+
+        </ion-col>
+      </ion-row>  
+        </ion-grid>
+    </ion-card>
+
+    <ion-list-header>Documentos</ion-list-header>
+    <ion-card *ngFor="let doc of documentos" >
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p><b>Id:</b> {{doc.id}}</p>
+            <p><b>Nome: </b>{{doc.nome}}</p>
+            <p><b>Data de entrega: </b>{{doc.dataEntrega}}</p>
+            <p><b>Local: </b>{{doc.local}}</p>
+            <p><b>Disciplina: </b>{{doc.disciplinaNome}}</p>
+            <ion-note color="danger" *ngIf="doc.entregue == 'false'">Documento não entregue</ion-note>
+            <ion-note color="success" *ngIf="doc.entregue == 'true'">Documeto entregue</ion-note>
+          </ion-col>
+          <ion-col>
+            <button ion-button (click)="editarDocumento(doc)"> Editar</button>
+            <button color="danger" ion-button (click)="excluirDocumento(doc)"> Excluir</button>
+            <button color="success" ion-button (click)="entregarDocumento(doc)" *ngIf="doc.entregue == 'false'"> Entregar</button>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card>
+
+  </ion-list>
+
+</ion-content>

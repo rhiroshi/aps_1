@@ -71,6 +71,10 @@ export class Disciplinas {
 	  alert.present();
   }
 
+  pesquisar(pes) {
+	  this.navCtrl.push('Pesquisa', { pesquisa: pes });
+  }
+
   ionViewDidLoad() {
   }
 
