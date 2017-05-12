@@ -113,7 +113,7 @@ export class Disciplina {
 	}
 
 
-	ionViewDidLoad() {
+	ionViewWillEnter() {
 		this.atualizaProgresso();
   }
 

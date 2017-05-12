@@ -81,8 +81,8 @@ export class Progresso {
 		});
 	}
 
-	ionViewDidLoad() {
-
+	ionViewWillView() {
+		this.atualizaProgresso();
   }
 
 }

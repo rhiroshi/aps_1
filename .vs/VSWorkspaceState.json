@@ -6,11 +6,11 @@
     "\\src\\pages\\atividades",
     "\\src\\pages\\cadastro-atividade",
     "\\src\\pages\\cadastro-documento",
+    "\\src\\pages\\disciplina",
     "\\src\\pages\\disciplinas",
     "\\src\\pages\\documentos",
-    "\\src\\pages\\pesquisa",
-    "\\src\\pages\\tabs-disciplina"
+    "\\src\\pages\\progresso"
   ],
-  "SelectedNode": "\\src\\pages\\disciplinas\\disciplinas.html",
+  "SelectedNode": "\\src\\pages\\progresso\\progresso.ts",
   "PreviewInSolutionExplorer": false
 }
