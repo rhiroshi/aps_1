@@ -1,7 +1,6 @@
 # [Ionic] Cadastro de tarefas
 ## Descrição
-Este projeto foi feito como trabalho para disciplina de programação movel.
-Para o armazenamento dos dados, foi utilizado o SQLite.
+Este projeto foi feito como trabalho para disciplina de programação movel. Foi utilizado o framework Ionic e para o armazenamento dos dados, foi utilizado o SQLite.
 ## Objetivos
 - O aplicativo possibilita o cadastro e login de um usuario
 - O usuario pode cadastrar uma disciplina
